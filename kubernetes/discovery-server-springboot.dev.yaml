@@ -1,0 +1,52 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: discoveryserver-springboot
+  labels:
+    app: discoveryserver-springboot
+  namespace: dev
+spec:
+  serviceName: discoveryserver-springboot
+  replicas: 1
+  selector:
+    matchLabels:
+      app: discoveryserver-springboot
+  template:
+    metadata:
+      labels:
+        app: discoveryserver-springboot
+    spec:
+      containers:
+      - name: discoveryserver-springboot
+        image: 192.168.20.222:8443/digitalbiohumans/poc/discovery-server-eureka-springboot:0.0.2-SNAPSHOT
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: port-tcp
+          containerPort: 8761
+          protocol: TCP
+        - name: port-udp
+          containerPort: 8761
+          protocol: UDP
+        livenessProbe:
+          tcpSocket:
+            port: 8761
+          initialDelaySeconds: 15
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: discoveryserver-springboot
+  labels:
+    app: discoveryserver-springboot
+  namespace: dev
+spec:
+  ports:
+  - name: gateway-port
+    port: 8761
+    targetPort: 8761
+  clusterIP: 10.152.183.126
+  selector:
+    app: discoveryserver-springboot
+---

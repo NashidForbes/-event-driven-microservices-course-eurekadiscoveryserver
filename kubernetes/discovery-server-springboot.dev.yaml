@@ -21,6 +21,9 @@ spec:
       - name: discoveryserver-springboot
         image: 192.168.20.222:8443/digitalbiohumans/poc/discovery-server-eureka-springboot:0.0.2-SNAPSHOT
         imagePullPolicy: IfNotPresent
+        env:
+          - name: SPRING_PROFILES_ACTIVE
+            value: dev
         ports:
         - name: port-tcp
           containerPort: 8761
@@ -46,7 +49,7 @@ spec:
   - name: gateway-port
     port: 8761
     targetPort: 8761
-  clusterIP: 10.152.183.126
+  type: ClusterIP
   selector:
     app: discoveryserver-springboot
 ---

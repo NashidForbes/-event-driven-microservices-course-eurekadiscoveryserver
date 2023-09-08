@@ -20,6 +20,9 @@ extra["springCloudVersion"] = "2022.0.3"
 
 dependencies {
     implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
+    implementation ("org.springframework.boot:spring-boot-starter-actuator")
+    implementation ("org.springframework.cloud:spring-cloud-starter-config:3.1.0")
+    implementation ("org.springframework.cloud:spring-cloud-starter-bootstrap:3.1.0")
     implementation ("io.micrometer:micrometer-observation:1.11.3")
     implementation ("io.micrometer:micrometer-tracing-bridge-brave:1.1.4")
     implementation ("io.zipkin.reporter2:zipkin-reporter-brave:2.16.4")

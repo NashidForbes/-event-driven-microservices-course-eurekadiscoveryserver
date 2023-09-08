@@ -19,11 +19,13 @@ spec:
     spec:
       containers:
       - name: discoveryserver-springboot
-        image: 192.168.20.222:8443/digitalbiohumans/poc/discovery-server-eureka-springboot:0.0.4-SNAPSHOT
+        image: 192.168.20.222:8443/digitalbiohumans/poc/discovery-server-eureka-springboot:0.0.6-SNAPSHOT
         imagePullPolicy: IfNotPresent
         env:
           - name: SPRING_PROFILES_ACTIVE
             value: dev
+          - name: SPRING_CLOUD_CONFIG_URI
+            value: http://food-ordering-springboot-cloud-config:8888
         ports:
         - name: port-tcp
           containerPort: 8761

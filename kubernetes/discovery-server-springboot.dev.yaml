@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: discoveryserver-springboot
-        image: 192.168.20.222:8443/digitalbiohumans/poc/discovery-server-eureka-springboot:0.0.7.1-spring-cloud-config-secure-client-SNAPSHOT
+        image: ${NEXUS_REPO_HOST}/digitalbiohumans/poc/discovery-server-eureka-springboot:0.0.7.1-spring-cloud-config-secure-client-SNAPSHOT
         imagePullPolicy: Always
         env:
           - name: SPRING_PROFILES_ACTIVE
